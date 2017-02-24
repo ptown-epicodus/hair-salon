@@ -73,5 +73,27 @@ $app->post('/stylists/{id}/clients', function($id) use ($app) {
     return $app->redirect("/stylists/{$id}");
 });
 
+$app->patch('/stylists/{stylist_id}/clients/{id}', function($stylist_id, $id) use ($app) {
+    $new_name = $_POST['name'];
+    $client = Client::find($id);
+    $client->update($new_name);
+    return $app->redirect("/stylists/{$stylist_id}");
+});
+
+$app->delete('/stylists/{stylist_id}/clients/{id}', function($stylist_id, $id) use ($app) {
+    $client = Client::find($id);
+    $client->delete();
+    return $app->redirect("/stylists/{$stylist_id}");
+});
+
+$app->get('/stylists/{stylist_id}/clients/{id}/edit', function($stylist_id, $id) use ($app) {
+    $stylist = Stylist::find($stylist_id);
+    $client = Client::find($id);
+    return $app['twig']->render('client_edit.html.twig', [
+        'client' => $client,
+        'stylist' => $stylist
+    ]);
+});
+
 return $app;
 ?>

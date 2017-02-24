@@ -5,7 +5,7 @@
     {% if clients is not empty %}
         <ul>
             {% for client in clients %}
-                <li>{{ client.getName }}</li>
+                <li><a href='/stylists/{{ stylist.getId }}/clients/{{ client.getId }}/edit'>{{ client.getName }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
