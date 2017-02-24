@@ -33,5 +33,10 @@ class Client
     {
         return $this->stylist_id;
     }
+
+    function setStylistId($new_stylist_id)
+    {
+        $this->stylist_id = $new_stylist_id;
+    }
 }
 ?>
