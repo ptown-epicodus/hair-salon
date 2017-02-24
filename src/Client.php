@@ -18,5 +18,10 @@ class Client
     {
         return $this->id;
     }
+
+    function getName()
+    {
+        return $this->name;
+    }
 }
 ?>
