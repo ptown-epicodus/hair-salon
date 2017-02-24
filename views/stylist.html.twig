@@ -1,0 +1,24 @@
+{% extends 'root.html.twig' %}
+
+{% block content %}
+    <h2>{{ stylist.getName }}'s clients:</h2>
+    {% if clients is not empty %}
+        <ul>
+            {% for client in clients %}
+                <li>{{ client.getName }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>This stylist does not have any clients right now.</p>
+    {% endif %}
+
+    <p>Add a client for this stylist:</p>
+    <form action='/stylists/{{ stylist.getId }}/clients' method='post'>
+        <label for='client-name'>Name:</label>
+        <input id='client-name' name='name' type='text'>
+
+        <button type='submit'>Add</button>
+    </form>
+
+    <p><a href='/'>Home</a></p>
+{% endblock %}
