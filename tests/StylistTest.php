@@ -141,5 +141,23 @@ class StylistTest extends PHPUnit_Framework_TestCase
         //Assert
         $this->assertEquals('Jane Doe', $result);
     }
+
+    function test_delete()
+    {
+        //Arrange
+        $name1 = 'John Doe';
+        $name2 = 'Jane Doe';
+        $test_Stylist1 = new Stylist($name1);
+        $test_Stylist1->save();
+        $test_Stylist2 = new Stylist($name2);
+        $test_Stylist2->save();
+
+        //Act
+        $test_Stylist1->delete();
+        $result = Stylist::getAll();
+
+        //Assert
+        $this->assertEquals([$test_Stylist2], $result);
+    }
 }
 ?>
