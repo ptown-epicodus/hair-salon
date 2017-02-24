@@ -16,6 +16,12 @@ This Silex website features a simple database showing clients that belong to hai
 4. Run `$ php -S localhost:8000`.
 5. Visit **`localhost:8000`** in web browser.
 
+### Database Setup
+```
+$ /Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot
+> CREATE DATABASE hair_salon_test;
+```
+
 
 ## Technologies Used
 
