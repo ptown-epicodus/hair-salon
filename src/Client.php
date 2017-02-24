@@ -26,7 +26,7 @@ class Client
 
     function setName($new_name)
     {
-        $this->name = $new_name;
+        $this->name = (string) $new_name;
     }
 
     function getStylistId()
@@ -36,7 +36,7 @@ class Client
 
     function setStylistId($new_stylist_id)
     {
-        $this->stylist_id = $new_stylist_id;
+        $this->stylist_id = (int) $new_stylist_id;
     }
 
     function save()
