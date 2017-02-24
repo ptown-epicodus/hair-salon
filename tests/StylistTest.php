@@ -15,6 +15,7 @@ class StylistTest extends PHPUnit_Framework_TestCase
 {
     protected function tearDown()
     {
+        Client::deleteAll();
         Stylist::deleteAll();
     }
 
@@ -187,6 +188,26 @@ class StylistTest extends PHPUnit_Framework_TestCase
 
         //Arrange
         $this->assertEquals([$test_Client1, $test_Client2], $result);
+    }
+
+    function test_delete_StylistClients()
+    {
+        //Arrange
+        $name = 'John Doe';
+        $test_Stylist = new Stylist($name);
+        $test_Stylist->save();
+
+        $client_name = 'John Deer';
+        $stylist_id = $test_Stylist->getId();
+        $test_Client = new Client($client_name, $stylist_id);
+        $test_Client->save();
+
+        //Act
+        $test_Stylist->delete();
+        $result = Client::getAll();
+
+        //Assert
+        $this->assertEquals([], $result);
     }
 }
 ?>
