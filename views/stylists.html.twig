@@ -1,0 +1,22 @@
+{% extends 'root.html.twig' %}
+
+{% block content %}
+    <h2>Stylists:</h2>
+    {% if stylists is not empty %}
+        <ul>
+            {% for stylist in stylists %}
+                <li>{{ stylist.getName }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no stylists.</p>
+    {% endif %}
+
+    <p>Add a stylist to database:</p>
+    <form action='/stylists' method='post'>
+        <label for='stylist-name'>Name:</label>
+        <input id='stylist-name' name='name' type='text'>
+
+        <button type='submit'>Add</button>
+    </form>
+{% endblock %}
