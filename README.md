@@ -20,6 +20,8 @@ This Silex website features a simple database showing clients that belong to hai
 ```
 $ /Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot
 > CREATE DATABASE hair_salon_test;
+> USE hair_salon_test;
+> CREATE TABLE stylists (id SERIAL PRIMARY KEY, name VARCHAR (255));
 ```
 
 
