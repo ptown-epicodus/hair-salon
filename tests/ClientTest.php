@@ -13,6 +13,12 @@ $DB = new PDO($server, $username, $password);
 
 class ClientTest extends PHPUnit_Framework_TestCase
 {
+    protected function tearDown()
+    {
+        Client::deleteAll();
+        Stylist::deleteAll();
+    }
+
     function test_getId()
     {
         //Arrange
@@ -104,6 +110,67 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
         //Assert
         $this->assertEquals($stylist_id2, $result);
+    }
+
+    function test_save()
+    {
+        //Arrange
+        $client_name = 'John Deer';
+        $stylist_name = 'John Doe';
+        $test_Stylist = new Stylist($stylist_name);
+        $test_Stylist->save();
+        $stylist_id = $test_Stylist->getId();
+        $test_Client = new Client($client_name, $stylist_id);
+        $test_Client->save();
+
+        //Act
+        $result = Client::getAll();
+
+        //Assert
+        $this->assertEquals($test_Client, $result[0]);
+    }
+
+    function test_getAll()
+    {
+        //Arrange
+        $client_name1 = 'John Deer';
+        $client_name2 = 'Jane Deer';
+        $stylist_name = 'John Doe';
+        $test_Stylist = new Stylist($stylist_name);
+        $test_Stylist->save();
+        $stylist_id = $test_Stylist->getId();
+        $test_Client1 = new Client($client_name1, $stylist_id);
+        $test_Client1->save();
+        $test_Client2 = new Client($client_name2, $stylist_id);
+        $test_Client2->save();
+
+        //Act
+        $result = Client::getAll();
+
+        //Assert
+        $this->assertEquals([$test_Client1, $test_Client2], $result);
+    }
+
+    function test_deleteAll()
+    {
+        //Arrange
+        $client_name1 = 'John Deer';
+        $client_name2 = 'Jane Deer';
+        $stylist_name = 'John Doe';
+        $test_Stylist = new Stylist($stylist_name);
+        $test_Stylist->save();
+        $stylist_id = $test_Stylist->getId();
+        $test_Client1 = new Client($client_name1, $stylist_id);
+        $test_Client1->save();
+        $test_Client2 = new Client($client_name2, $stylist_id);
+        $test_Client2->save();
+
+        //Act
+        Client::deleteAll();
+        $result = Client::getAll();
+
+        //Assert
+        $this->assertEquals([], $result);
     }
 }
 ?>
