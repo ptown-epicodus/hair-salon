@@ -1,22 +1,36 @@
 {% extends 'root.html.twig' %}
 
 {% block content %}
-    <h2>Stylists:</h2>
-    {% if stylists is not empty %}
-        <ul>
-            {% for stylist in stylists %}
-                <li><a href='/stylists/{{ stylist.getId }}'>{{ stylist.getName }}</a> <a href='/stylists/{{ stylist.getId }}/edit'>Edit</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>There are no stylists.</p>
-    {% endif %}
+    <div class='panel panel-info'>
+        <div class='panel-heading'>
+            <h2 class='panel-title'>Stylists:</h2>
+        </div>
+        <div class='panel-body'>
+            {% if stylists is not empty %}
+                <ul>
+                    {% for stylist in stylists %}
+                        <li><a href='/stylists/{{ stylist.getId }}'>{{ stylist.getName }}</a> - <a href='/stylists/{{ stylist.getId }}/edit'>Edit</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>There are no stylists.</p>
+            {% endif %}
+        </div>
+    </div>
 
-    <p>Add a stylist to database:</p>
-    <form action='/stylists' method='post'>
-        <label for='stylist-name'>Name:</label>
-        <input id='stylist-name' name='name' type='text'>
+    <div class='panel panel-success'>
+        <div class='panel-heading'>
+            <h2 class='panel-title'>Add a stylist to database:</h2>
+        </div>
+        <div class='panel-body'>
+            <form action='/stylists' method='post'>
+                <div class='form-group'>
+                    <label for='stylist-name'>Name:</label>
+                    <input id='stylist-name' name='name' type='text' class='form-control'>
+                </div>
 
-        <button type='submit'>Add</button>
-    </form>
+                <button type='submit' class='btn btn-success'>Add</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

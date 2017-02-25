@@ -1,21 +1,28 @@
 {% extends 'root.html.twig' %}
 
 {% block content %}
-    <h2>Update {{ client.getName }}'s record:</h2>
+    <div class='panel panel-warning'>
+        <div class='panel-heading'>
+            <h2 class='panel-title'>Update {{ client.getName }}'s record:</h2>
+        </div>
+        <div class='panel-body'>
+            <form action='/stylists/{{ stylist.getId }}/clients/{{ client.getId }}' method='post'>
+                <input name='_method' type='hidden' value='patch'>
 
-    <form action='/stylists/{{ stylist.getId }}/clients/{{ client.getId }}' method='post'>
-        <input name='_method' type='hidden' value='patch'>
+                <div class='form-group'>
+                    <label for='client-name'>Rename client:</label>
+                    <input id='client-name' name='name' type='text' class='form-control'>
+                </div>
 
-        <label for='client-name'>Rename client:</label>
-        <input id='client-name' name='name' type='text'>
-
-        <button type='submit'>Update</button>
-    </form>
+                <button type='submit' class='btn btn-warning'>Update</button>
+            </form>
+        </div>
+    </div>
 
     <form action='/stylists/{{ stylist.getId }}/clients/{{ client.getId }}' method='post'>
         <input name='_method' type='hidden' value='delete'>
 
-        <button type='submit'>Remove client from database</button>
+        <button type='submit' class='btn btn-danger'>Remove client from database</button>
     </form>
 
     <p><a href='/'>Home</a></p>

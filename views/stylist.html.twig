@@ -1,24 +1,38 @@
 {% extends 'root.html.twig' %}
 
 {% block content %}
-    <h2>{{ stylist.getName }}'s clients:</h2>
-    {% if clients is not empty %}
-        <ul>
-            {% for client in clients %}
+    <div class='panel panel-info'>
+        <div class='panel-heading'>
+            <h2 class='panel-title'>{{ stylist.getName }}'s clients:</h2>
+        </div>
+        <div class='panel-body'>
+            {% if clients is not empty %}
+            <ul>
+                {% for client in clients %}
                 <li><a href='/stylists/{{ stylist.getId }}/clients/{{ client.getId }}/edit'>{{ client.getName }}</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>This stylist does not have any clients right now.</p>
-    {% endif %}
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>This stylist does not have any clients right now.</p>
+            {% endif %}
+        </div>
+    </div>
 
-    <p>Add a client for this stylist:</p>
-    <form action='/stylists/{{ stylist.getId }}/clients' method='post'>
-        <label for='client-name'>Name:</label>
-        <input id='client-name' name='name' type='text'>
+    <div class='panel panel-success'>
+        <div class='panel-heading'>
+            <h2 class='panel-title'>Add a client for this stylist:</h2>
+        </div>
+        <div class='panel-body'>
+            <form action='/stylists/{{ stylist.getId }}/clients' method='post'>
+                <div class='form-group'>
+                    <label for='client-name'>Name:</label>
+                    <input id='client-name' name='name' type='text' class='form-control'>
+                </div>
 
-        <button type='submit'>Add</button>
-    </form>
+                <button type='submit' class='btn btn-success'>Add</button>
+            </form>
+        </div>
+    </div>
 
     <p><a href='/'>Home</a></p>
 {% endblock %}
